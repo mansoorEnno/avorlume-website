@@ -5,8 +5,8 @@ from urllib.parse import urlsplit
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC = ['index.html', 'privacy.html', 'thanks.html', '404.html', 'robots.txt', 'sitemap.xml', 'CNAME', '.nojekyll', 'favicon.svg', 'site.js', 'styles.css', 'demo.js', 'workflow-model.mjs', 'form.js', 'enquire.html']
-PUBLIC += sorted(str(p.relative_to(ROOT)) for p in (ROOT/'assets').rglob('*') if p.is_file())
+PUBLIC = ['index.html', 'privacy.html', 'thanks.html', '404.html', 'robots.txt', 'sitemap.xml', 'CNAME', '.nojekyll', 'favicon.svg', 'site.js', 'styles.css', 'demo.js', 'workflow-model.mjs', 'form.js', 'enquire.html', 'services.html', 'demo.css']
+PUBLIC += sorted(str(p.relative_to(ROOT)) for directory in ['assets','services','lab'] for p in (ROOT/directory).rglob('*') if p.is_file())
 class Page(HTMLParser):
     def __init__(self):
         super().__init__(); self.nodes=[]; self.ids=[]; self.jsonld=[]; self.in_json=False
@@ -63,7 +63,7 @@ for name,page in pages.items():
                 assert element_id in page.ids, f'Missing {relation} target in {name}: {element_id}'
 import re
 for element_id in re.findall(r"byId\('([^']+)'\)", (ROOT/'demo.js').read_text()):
-    assert element_id in pages['index.html'].ids, f'Missing demo element: {element_id}'
+    assert element_id in pages['lab/request-workflow.html'].ids, f'Missing demo element: {element_id}'
 for asset in re.findall(r"url\(['\"]?([^)'\"]+)", (ROOT/'styles.css').read_text()):
     assert asset.lstrip('/') in PUBLIC, f'Missing stylesheet asset: {asset}'
 assert not any(t=='form' for t,a in pages['index.html'].nodes), 'Homepage contact is email-first while form delivery is unverified'

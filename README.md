@@ -41,3 +41,6 @@ Run `python3 scripts/check-site.py` and `node --check site.js` before publishing
 The homepage now presents a local-only working request workflow demonstration, two core services and email-first contact. The optional FormSubmit form is at `/enquire.html` and remains unverified. See [brand review](docs/BRAND-REVIEW-2026-10-15.md) for implementation rationale, independent findings and exact evidence limits.
 
 Checks: `python3 scripts/check-site.py`, `node --check site.js`, `node --check demo.js`, `node --check form.js`, and `node --test scripts/workflow.test.mjs`. Manrope is self-hosted under the licence in `assets/fonts/OFL-Manrope.txt`.
+
+## Current company positioning
+The homepage now introduces Avorlume’s broader technology and digital offer. `/services.html` leads to six substantive service pages: websites, ecommerce, software, AI/automation, Salesforce/CRM and cloud/integrations. The approved logo is preserved. The request demonstration is secondary at `/lab/request-workflow.html`; the optional unverified form remains at `/enquire.html`. The homepage no longer uses the fragmented website/Salesforce headline or embeds the demo. See `docs/COMPANY-POSITIONING-REVIEW.md` for this owner-directed revision and its evidence limits.

@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://avorlume.com/</loc></url><url><loc>https://avorlume.com/privacy.html</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://avorlume.com/</loc></url>
+<url><loc>https://avorlume.com/services.html</loc></url>
+<url><loc>https://avorlume.com/privacy.html</loc></url>
+<url><loc>https://avorlume.com/services/automation.html</loc></url>
+<url><loc>https://avorlume.com/services/ecommerce.html</loc></url>
+<url><loc>https://avorlume.com/services/integrations.html</loc></url>
+<url><loc>https://avorlume.com/services/salesforce.html</loc></url>
+<url><loc>https://avorlume.com/services/software.html</loc></url>
+<url><loc>https://avorlume.com/services/websites.html</loc></url>
+<url><loc>https://avorlume.com/lab/request-workflow.html</loc></url>
+</urlset>
