@@ -1,0 +1,42 @@
+# Avorlume launch review — 15 October 2026 (Pakistan time)
+
+## Verified results
+- Connected GitHub repository is `mansoorEnno/avorlume-website`, default branch `main`.
+- Previous deployment run 38627287249 for commit `204d4a2` completed successfully. A successful deployment alone does not establish working custom-domain TLS.
+- Both `https://avorlume.com/` and `https://www.avorlume.com/` returned `502 Bad Gateway / Certificate verify failed: hostname mismatch` in the cloud browser. Shell HTTPS requests returned the same proxy error. The browser's HTTP visit was upgraded to HTTPS and failed; plain HTTP redirect status was not independently established.
+- GitHub Pages settings were signed out; a secure sign-in request selected Google, but automatic approval review blocked accounts.google.com because it considered separate-account access outside the confirmed GitHub flow. Explicit approval for Google sign-in is required before continuing.  the connected GitHub plugin exposes source and workflow operations but no Pages administration action. Certificate state and Enforce HTTPS cannot be checked/changed without authenticated browser access.
+- Public Google DNS JSON answers: apex A = 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153; www CNAME = mansoorenno.github.io; no apex AAAA or CAA answers.
+- MX = mx1.privateemail.com and mx2.privateemail.com, both priority 10. SPF = `v=spf1 include:spf.privateemail.com ~all`. DKIM exists at `privateemail._domainkey.avorlume.com`. DMARC = `v=DMARC1; p=none`. No DNS records were changed during this review.
+- Existing owner test received by Gmail at 2026-10-14 19:41 UTC has receiver Authentication-Results: SPF PASS, DKIM PASS (`d=avorlume.com`, selector `privateemail`), DMARC PASS (`header.from=avorlume.com`, p=NONE). Envelope sender and From domain align. This is inspected recent received evidence, not a newly sent integration test. DMARC monitoring policy does not request quarantine/reject.
+- The older message used display name `hello`. During this run, secure Private Email sign-in succeeded; Settings save confirmed **Mansoor | Avorlume** with a success notification. The inbox visibly contains an earlier owner reply. The existing default signature was read and contains one Mansoor/Avorlume signature. An attempted HTML-formatting update became blocked by native credential protection; its save/completion is not verified. No fresh email was sent during this run.
+
+## Sequential specialist review and implemented work
+1. **Frontend:** progressive mobile navigation without JavaScript; Escape closes menu and restores focus; outside click closes it; resizing clears stale expanded state; sticky mobile CTA hides while contact section is visible; browser back restores submit button state. CI validates links, fragments, metadata and form safeguards. Deployment stages an explicit public file allowlist instead of the whole repository.
+2. **UI/UX:** reworked the template into a dark-green/paper editorial layout with serif emphasis, two core service rows and functional problem-selection links. Removed decorative browser mockup and six equal service cards. Increased supporting text sizes, simplified brand/numbering and matched privacy/thank-you/404 pages. Wrapped footer links and enlarged consent control.
+3. **Australian B2B messaging:** homepage explicitly identifies audience and remote delivery; founder introduction names Mansoor and relevant Salesforce/portal/integration skills; no Australian-incorporation, location, client, team or performance claims added.
+4. **Conversion:** stronger concrete headline, direct developer relationship, scoping/quote/handover explanations, support FAQ and no-obligation next step. Ecommerce/AI/custom work is subject to fit and scope review. No claimed conversion uplift: validate with actual Australian business owners.
+5. **SEO/performance:** more specific title, description and social text; locale/site name and SVG favicon; schema identifies an Organization and founder rather than implying a local business address; system fonts/no third-party UI runtime retained. Lighthouse/Core Web Vitals not measured because production TLS blocks the browser. No social preview image or invented review schema added.
+6. **Accessibility:** required labels and field constraints retained; helper text associated with textarea; status message and disabled state during handoff; motion preference retained; decorative logo marked hidden from assistive technology; mobile controls and fallback navigation improved. Full axe/screen-reader, 320px/zoom and keyboard interaction QA remain unverified.
+7. **Email:** public records and recent receiver authentication verified; HTML/text signature prepared with requested wording. Display name saved successfully. Existing single default signature text inspected; exact HTML replacement pending browser recovery.
+8. **Sales integration:** evaluated available connectors and native IMAP/SMTP path; see `MAILBOX-INTEGRATION.md`. Updated all three active ChatGPT workflow prompts with verified launch state, consent/dedupe rules and explicit external-sending approval gate. Schedules/enabled state unchanged; two older paused workflows left paused.
+9. **Critical review:** automated source/link/form checks and JS syntax pass. Full desktop/mobile visual QA and form receipt remain launch blockers, not assumed successes.
+
+## Enquiry test
+One authorised non-commercial direct endpoint POST (reference `AV-QA-20261015-01`) used the owner's Gmail as reply address, dummy business/project details, consent and CAPTCHA enabled. HTTP 200 contained **Unable to submit form / Make sure you open this page through a web server**. This is a rejected test, not successful delivery, activation or spam-check completion. No CAPTCHA was bypassed. Business mailbox sign-in succeeded, but no activation email was visible in the inspected inbox; native credential protection subsequently blocked further signature/compose operations. No activation receipt, form delivery or thank-you redirect was verified. Homepage explicitly advises direct email for time-sensitive enquiries while form delivery is unverified.
+
+Keep FormSubmit for a controlled browser test after TLS and mailbox login; the rejection is not sufficient evidence to migrate providers. Replacements must establish authenticated receipt, reply handling, privacy and abuse controls before adoption. No paid form service was created.
+
+## Remaining launch gates
+- Inspect GitHub Pages certificate progress and Enforce HTTPS after secure sign-in. Do not remove/re-add custom domain or alter DNS without owner approval if a material change is necessary. Allow provider provisioning time where appropriate; do not bypass certificate validation.
+- Recheck valid apex/www HTTPS, expected redirects and deployed page contents.
+- Test desktop/mobile navigation, touch targets, focus order, 320px, 200% zoom, FAQ, mailto, privacy, 404 and thank-you page in real browsers. Do not equate source review with this test.
+- Submit live form, authenticate mailbox, activate if required, then submit a second unique test. Verify receipt, fields, Reply-To, provider spam check, thank-you redirect and reply delivery using only owner accounts. CAPTCHA requires action-time confirmation if presented.
+- Display name is saved; verify the final signature format after browser recovery. Send a fresh owner-only test and inspect receiver authentication again.
+- Approve/securely provision a persistent two-way mailbox integration and pass the acceptance tests before any commercial sending.
+- Validate messaging with three target business owners and gather real examples/portfolio permission. These external feedback tasks were not performed.
+
+## Cost and readiness
+No purchases, subscriptions, DNS changes, new persistent credentials or external commercial emails were made. Existing mailbox/domain charges remain. A persistent IMAP/SMTP bridge may require hosting and maintenance; no price or new commitment has been accepted. Website source can deploy, but outreach launch is blocked by TLS, unverified form delivery and lack of connected business-mailbox tools.
+
+## Independent specialist review
+A separately delegated senior UI/UX/marketing/QA agent completed two source reviews, then the engineer corrected its focus-ring and mobile-menu scrolling findings. Full per-section human-style review plan and evidence boundaries: [HUMAN-UX-REVIEW.md](HUMAN-UX-REVIEW.md). No live visual or user-test success is claimed.

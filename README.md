@@ -24,10 +24,15 @@ This repository contains a static website and a GitHub Pages Actions workflow in
 Form endpoint: `https://formsubmit.co/hello@avorlume.com`. The first enquiry prompts FormSubmit activation at hello@avorlume.com. Follow activation instructions then submit a second test; verify message content and successful redirect. Until then, direct mailto links are available.
 
 ## Email deliverability
-Previous Gmail tests passed SPF and DKIM but failed DMARC. Retest with a **new** email after publishing DNS TXT `_dmarc` value `v=DMARC1; p=none`; do not claim DMARC is working without PASS.
+Public `_dmarc` TXT is `v=DMARC1; p=none`. A recent received owner test (14 October 2026, 19:41 UTC) has Gmail receiver SPF, DKIM and DMARC PASS. This resolves the earlier DMARC FAIL evidence for that test; retest after any integration change. Actual webmail display-name update and a new integration test remain pending secure login.
 
 ## Sales automation
 Connected ChatGPT Gmail is personal Gmail, not the Namecheap Private Email account. No automated prospect sends from hello@avorlume.com are currently configured or authorized. Use internal lead research/drafts and manual sending until a real integration is proven.
 
 ## Operational tracking
 See `docs/QA-AND-LAUNCH.md` for the launch gate, accessibility/UX review and deferred improvements.
+
+## Latest review and checks
+See [15 October launch review](docs/LAUNCH-REVIEW-2026-10-15.md) for verified results and blockers, and [mailbox integration](docs/MAILBOX-INTEGRATION.md) for the prepared two-way integration design. TLS and enquiry receipt are not yet verified.
+
+Run `python3 scripts/check-site.py` and `node --check site.js` before publishing. Actions stages only the public allowlist in `_site/`; internal documentation and brand signature files are not web pages.

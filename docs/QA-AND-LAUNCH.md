@@ -1,3 +1,7 @@
+# Historical source review
+
+Current evidence and outstanding launch gates are in [LAUNCH-REVIEW-2026-10-15.md](LAUNCH-REVIEW-2026-10-15.md). The checklist below records the earlier review and is not current verification.
+
 # Avorlume — Independent launch and conversion audit
 
 ## Scope and method
