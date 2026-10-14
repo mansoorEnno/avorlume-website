@@ -48,6 +48,7 @@ assert form['method'].lower()=='post' and form['action']=='https://formsubmit.co
 inputs={a['name']:a for t,a in form_page.nodes if t in ('input','textarea','select') and 'name' in a}
 assert inputs['_captcha']['value']=='true'
 assert inputs['_next']['value']=='https://avorlume.com/thanks.html'
+assert inputs['_url']['value']=='https://avorlume.com/enquire.html'
 for name in ['name','email','service','details','consent']:
     assert 'required' in inputs[name], f'Required field missing: {name}'
 assert inputs['email']['type']=='email'
@@ -68,3 +69,4 @@ for asset in re.findall(r"url\(['\"]?([^)'\"]+)", (ROOT/'styles.css').read_text(
     assert asset.lstrip('/') in PUBLIC, f'Missing stylesheet asset: {asset}'
 assert not any(t=='form' for t,a in pages['index.html'].nodes), 'Homepage contact is email-first while form delivery is unverified'
 print(f'PASS: {len(PUBLIC)} public files, {len(pages)} HTML pages; local links, fragments, metadata and form safeguards.')
+
