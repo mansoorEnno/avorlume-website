@@ -6,3 +6,4 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 
 .service-directory .capability-link h2{font-size:26px;line-height:1.4;letter-spacing:-.6px;font-weight:650;margin:0 0 10px}.service-directory .capability-link:hover h2{text-decoration:underline;text-underline-offset:6px}@media(max-width:600px){.service-directory .capability-link h2{font-size:22px}}
+@media(max-width:360px){.business-hero h1{font-size:40px}}
