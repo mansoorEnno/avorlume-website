@@ -36,3 +36,8 @@ See `docs/QA-AND-LAUNCH.md` for the launch gate, accessibility/UX review and def
 See [15 October launch review](docs/LAUNCH-REVIEW-2026-10-15.md) for verified results and blockers, and [mailbox integration](docs/MAILBOX-INTEGRATION.md) for the prepared two-way integration design. TLS and enquiry receipt are not yet verified.
 
 Run `python3 scripts/check-site.py` and `node --check site.js` before publishing. Actions stages only the public allowlist in `_site/`; internal documentation and brand signature files are not web pages.
+
+## Current brand/workflow implementation
+The homepage now presents a local-only working request workflow demonstration, two core services and email-first contact. The optional FormSubmit form is at `/enquire.html` and remains unverified. See [brand review](docs/BRAND-REVIEW-2026-10-15.md) for implementation rationale, independent findings and exact evidence limits.
+
+Checks: `python3 scripts/check-site.py`, `node --check site.js`, `node --check demo.js`, `node --check form.js`, and `node --test scripts/workflow.test.mjs`. Manrope is self-hosted under the licence in `assets/fonts/OFL-Manrope.txt`.

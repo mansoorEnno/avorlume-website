@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createRequests,advanceRequest,visibleRequests,stages} from '../workflow-model.mjs';
+test('new request advances through assignment, work and completion with history',()=>{const items=createRequests(),item=items[0];for(let stage=1;stage<=3;stage++){assert.equal(advanceRequest(items,item.id),true);assert.equal(item.stage,stage);assert.equal(item.owner,'Demo owner');assert.equal(item.history.length,stage+1);}assert.equal(stages[item.stage],'Complete');});
+test('terminal requests cannot advance or add duplicate events',()=>{const items=createRequests(),item=items[2],before=structuredClone(item);assert.equal(advanceRequest(items,item.id),false);assert.deepEqual(item,before);});
+test('filters reflect changes rather than stale counts',()=>{const items=createRequests();assert.equal(visibleRequests(items,'open').length,2);advanceRequest(items,items[1].id);advanceRequest(items,items[1].id);assert.equal(visibleRequests(items,'open').length,1);assert.equal(visibleRequests(items,'complete').length,2);assert.equal(visibleRequests(items,'all').length,3);});
+test('reset creates independent data and histories',()=>{const first=createRequests();advanceRequest(first,first[0].id);const second=createRequests();assert.equal(second[0].stage,0);assert.equal(second[0].history.length,1);assert.notEqual(first[0].history,second[0].history);});
+test('unknown requests and filters fail explicitly',()=>{assert.throws(()=>advanceRequest(createRequests(),'missing'));assert.throws(()=>visibleRequests(createRequests(),'missing'));});

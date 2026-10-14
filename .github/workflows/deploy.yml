@@ -25,10 +25,14 @@ jobs:
         run: |
           python3 scripts/check-site.py
           node --check site.js
+          node --check demo.js
+          node --check form.js
+          node --test scripts/workflow.test.mjs
       - name: Prepare public files
         run: |
           mkdir -p _site
-          cp index.html privacy.html thanks.html 404.html robots.txt sitemap.xml CNAME .nojekyll favicon.svg site.js styles.css _site/
+          cp index.html privacy.html thanks.html 404.html robots.txt sitemap.xml CNAME .nojekyll favicon.svg site.js styles.css demo.js workflow-model.mjs form.js enquire.html _site/
+          cp -R assets _site/assets
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:

@@ -5,7 +5,8 @@ from urllib.parse import urlsplit
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC = ['index.html', 'privacy.html', 'thanks.html', '404.html', 'robots.txt', 'sitemap.xml', 'CNAME', '.nojekyll', 'favicon.svg', 'site.js', 'styles.css']
+PUBLIC = ['index.html', 'privacy.html', 'thanks.html', '404.html', 'robots.txt', 'sitemap.xml', 'CNAME', '.nojekyll', 'favicon.svg', 'site.js', 'styles.css', 'demo.js', 'workflow-model.mjs', 'form.js', 'enquire.html']
+PUBLIC += sorted(str(p.relative_to(ROOT)) for p in (ROOT/'assets').rglob('*') if p.is_file())
 class Page(HTMLParser):
     def __init__(self):
         super().__init__(); self.nodes=[]; self.ids=[]; self.jsonld=[]; self.in_json=False
@@ -41,9 +42,10 @@ for name,p in pages.items():
                 assert u.fragment in pages[target].ids, f'Broken fragment in {name}: {link}'
 p=pages['index.html']
 assert sum(t=='h1' for t,a in p.nodes)==1
-form=next(a for t,a in p.nodes if t=='form')
+form_page=pages['enquire.html']
+form=next(a for t,a in form_page.nodes if t=='form')
 assert form['method'].lower()=='post' and form['action']=='https://formsubmit.co/hello@avorlume.com'
-inputs={a['name']:a for t,a in p.nodes if t in ('input','textarea','select') and 'name' in a}
+inputs={a['name']:a for t,a in form_page.nodes if t in ('input','textarea','select') and 'name' in a}
 assert inputs['_captcha']['value']=='true'
 assert inputs['_next']['value']=='https://avorlume.com/thanks.html'
 for name in ['name','email','service','details','consent']:
@@ -54,4 +56,15 @@ assert inputs['details']['maxlength']=='2000'
 assert inputs['_honey']['tabindex']=='-1'
 assert p.jsonld[0]['founder']['name']=='Mansoor Ijaz'
 assert (ROOT/'CNAME').read_text().strip()=='avorlume.com'
+for name,page in pages.items():
+    for tag,attrs in page.nodes:
+        for relation in ('aria-describedby','aria-controls'):
+            for element_id in attrs.get(relation,'').split():
+                assert element_id in page.ids, f'Missing {relation} target in {name}: {element_id}'
+import re
+for element_id in re.findall(r"byId\('([^']+)'\)", (ROOT/'demo.js').read_text()):
+    assert element_id in pages['index.html'].ids, f'Missing demo element: {element_id}'
+for asset in re.findall(r"url\(['\"]?([^)'\"]+)", (ROOT/'styles.css').read_text()):
+    assert asset.lstrip('/') in PUBLIC, f'Missing stylesheet asset: {asset}'
+assert not any(t=='form' for t,a in pages['index.html'].nodes), 'Homepage contact is email-first while form delivery is unverified'
 print(f'PASS: {len(PUBLIC)} public files, {len(pages)} HTML pages; local links, fragments, metadata and form safeguards.')

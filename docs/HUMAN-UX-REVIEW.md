@@ -1,3 +1,7 @@
+# Earlier layout review
+
+The later brand/workflow implementation and current verification details are in [BRAND-REVIEW-2026-10-15.md](BRAND-REVIEW-2026-10-15.md). Preserve the checks below as historical review context, not current rendered evidence.
+
 # Avorlume: independent UX review and human QA plan
 
 Reviewed: 15 October 2026 (Asia/Karachi). Review scope: the working-tree homepage, stylesheet, JavaScript, privacy page, thank-you page and 404 page.
