@@ -1,8 +1,9 @@
 "use client";
 import {useEffect,useRef,useState,type FormEvent} from 'react';
 import {Check,Mail} from 'lucide-react';
-import {services as allServices,timelines} from '../lib/enquiry';
-const services=allServices.slice(0,5);
+import {timelines} from '../lib/enquiry';
+import {offerings} from '../lib/portfolio';
+const services:readonly string[]=[...offerings.map(o=>o.service),'Help me decide'];
 export function Contact(){const[selected,setSelected]=useState<string>(services[0]);const[step,setStep]=useState(1);const[pending,setPending]=useState(false);const[error,setError]=useState('');const[receipt,setReceipt]=useState('');const requestId=useRef('');const heading=useRef<HTMLHeadingElement>(null);const success=useRef<HTMLHeadingElement>(null);
 useEffect(()=>{const value=new URLSearchParams(window.location.search).get('service');if(value&&(services as readonly string[]).includes(value)){setSelected(value);setStep(2)}},[]);useEffect(()=>{if(step===2)heading.current?.focus({preventScroll:true})},[step]);useEffect(()=>{if(receipt)success.current?.focus({preventScroll:true})},[receipt]);
 
