@@ -17,28 +17,19 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Pages
-        uses: actions/configure-pages@v5
-      - name: Validate site
-        run: |
-          python3 scripts/check-site.py
-          node --check site.js
-          node --check demo.js
-          node --check form.js
-          node --test scripts/workflow.test.mjs
-      - name: Prepare public files
-        run: |
-          mkdir -p _site
-          cp index.html privacy.html thanks.html 404.html robots.txt sitemap.xml CNAME .nojekyll favicon.svg site.js styles.css demo.js workflow-model.mjs form.js enquire.html services.html demo.css _site/
-          cp -R assets _site/assets
-          cp -R services _site/services
-          cp -R lab _site/lab
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          path: _site
+          node-version: 22
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
