@@ -26,3 +26,5 @@ Three stages: Service, Project details, Review. Progress represents the current 
 Production build passed. Local browser checks at 1440, 390 and 320 pixels: step transitions, empty-field errors, first-field focus, valid review, editing with preserved values, native field enablement, progress semantics and absence of horizontal phone overflow. The footer project action and home hero action reach the form. Footer links use real destinations and email uses mailto. No external enquiry was submitted. Screenshots captured of desktop review, phone progress and the desktop/phone footer. Standalone Taste inspector was not used, in accordance with the approved browser-control workflow.
 
 Remaining operational item: FormSubmit inbox delivery must be verified before treating the form as a confirmed lead-delivery channel. This is disclosed on the review stage. Company and client confidentiality preserved.
+
+Follow-up: desktop service options use two columns and phones use a compact native selector, reducing the first stage's height while preserving the selected service between stages. Production build and phone selection-to-details check passed.
