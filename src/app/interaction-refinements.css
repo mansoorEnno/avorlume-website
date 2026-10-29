@@ -1,0 +1,48 @@
+/* User Interface Wiki refinement pass. Keep the established visual identity. */
+:root{--feedback-fast:160ms;--feedback-state:220ms;--feedback-ease:cubic-bezier(.2,.7,.3,1)}
+body{font-synthesis:none;font-optical-sizing:auto;font-feature-settings:'kern' 1,'calt' 1}
+p{text-wrap:pretty}
+.catalogue-count,.receipt,.expertise-route small{font-variant-numeric:tabular-nums}
+.hero-description,.about-story p,.service-detail .lead{max-width:65ch}
+.identity-portrait,.founder-portrait,.platform-reference-grid img,.work-image-button>.mini-visual,.work-image-button>.code-visual,.work-image-button>.blueprint-visual,.work-image-button>.web-visual{transition:transform 240ms var(--feedback-ease)}
+.identity-art{transition:none;box-shadow:0 22px 55px -38px #45598e66}
+.identity-art::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px #536fa329;pointer-events:none;z-index:3;opacity:0;transition:opacity var(--feedback-fast)}
+.identity-art:hover{box-shadow:0 22px 55px -38px #45598e66}.identity-art:hover::after{opacity:1}
+.button{transition:background var(--feedback-fast),border-color var(--feedback-fast),transform 120ms var(--feedback-ease)}
+.button:active:not(:disabled){transform:scale(.985)}
+.map-selector button{min-height:40px;transition:background var(--feedback-fast),border-color var(--feedback-fast),color var(--feedback-fast)}
+.mode-crm .crm-signal,.mode-ai .ai-signal,.mode-location .location-signal{animation-duration:260ms}
+.expertise-mobile,.project-filter-mobile{display:none}
+.expertise-detail{align-content:start;min-height:535px}
+.expertise-copy,.expertise-output{animation-duration:200ms;animation-timing-function:var(--feedback-ease)}
+.expertise-copy h3{max-width:22ch}.expertise-copy>p{min-height:100px}
+.expertise-choices button:active,.project-category button:active{transform:scale(.99)}
+.expertise-choices button:focus-visible,.project-category button:focus-visible{outline:2px solid #5477d7;outline-offset:-3px}
+.expertise-output>p,.catalogue-count,.project-outline>span,.reference-note{color:#607493}
+.platform-reference-grid figcaption>a,.stream-heading button{display:inline-flex;align-items:center;min-height:32px;width:fit-content}
+.text-link{position:relative;isolation:isolate}.text-link::before{content:'';position:absolute;inset:-7px -3px;z-index:-1}
+.service-jump a{min-height:36px;display:inline-flex;align-items:center;justify-content:center}
+.project-outline details>summary,.service-projects summary{min-height:48px}
+.project-outline details[open]{padding-bottom:4px}
+.brief-card input::placeholder,.brief-card textarea::placeholder{color:#78859a;opacity:1}
+.brief-card input:focus-visible,.brief-card select:focus-visible,.brief-card textarea:focus-visible{outline:2px solid #5878d3;outline-offset:2px}
+.form-error{border-left:2px solid #a34141;padding:8px 12px;background:#fff5f5;border-radius:0 5px 5px 0}
+.case-dialog{scrollbar-gutter:stable}.dialog-close{min-height:40px;min-width:40px}
+html[data-input=keyboard]{scroll-behavior:auto}
+html[data-input=keyboard] :is(button,a,input,select,textarea,summary){transition:none!important}
+html[data-input=keyboard] :is(.expertise-copy,.expertise-output,.nav.open,.case-dialog,.service-projects[open]>ul,.project-outline details[open]>p){animation:none!important}
+html[data-input=keyboard] .signal{animation:none!important}
+@media(max-width:1100px){.expertise-detail{min-height:680px}.expertise-copy>p{min-height:0}}
+@media(max-width:700px){
+ .expertise-choices,.project-category{display:none}
+ .expertise-mobile,.project-filter-mobile{display:grid;gap:10px;padding:22px 23px;background:#eaf0fc;border-bottom:1px solid #d3dff1}
+ .expertise-mobile label,.project-filter-mobile label{font-size:12px;color:#516c96}
+ .expertise-mobile select,.project-filter-mobile select{font-size:16px;line-height:1.4;min-height:48px;width:100%;max-width:100%;border:1px solid #bacce8;border-radius:7px;background:#fff;color:#2c456d;padding:11px 34px 11px 12px}
+ .project-filter-mobile{border:1px solid #d3dff1;border-radius:10px;padding:20px}
+ .expertise-detail{min-height:0;padding:28px 23px}.expertise-output{padding:23px;border-radius:10px}.expertise-output>p{margin-top:22px}
+ .expertise-copy h3{font-size:29px;line-height:1.22}.expertise-copy .text-link{margin-bottom:0}
+ .project-outline h2{font-size:27px;line-height:1.26}.project-outline>p{font-size:14px}
+ .map-selector{gap:2px}.map-selector button{padding-inline:9px;font-size:10px;min-height:40px}
+ .stream-heading button{min-height:36px}.credential-groups li{line-height:1.8}.footer-bottom{line-height:1.7}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
