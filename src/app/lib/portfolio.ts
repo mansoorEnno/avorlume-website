@@ -5,7 +5,7 @@ export const offerings = [
   {
     "id": "architecture",
     "title": "Salesforce architecture & advisory",
-    "short": "Decide before you build.",
+    "short": "Resolve the design before committing to delivery.",
     "copy": "Make platform decisions with a clear view of your business process, data, constraints and the systems around Salesforce.",
     "deliverables": [
       "Current-state system and process map",
@@ -29,7 +29,7 @@ export const offerings = [
   {
     "id": "security",
     "title": "Security, identity & access",
-    "short": "Access with clear boundaries.",
+    "short": "Give people and integrations the access they need.",
     "copy": "Review Salesforce sharing, permissions, identity flows and integration trust boundaries. Translate the findings into a practical remediation plan and agreed configuration changes.",
     "deliverables": [
       "Role, permission-set and sharing model review",
@@ -53,7 +53,7 @@ export const offerings = [
   {
     "id": "integration",
     "title": "MuleSoft & API integration",
-    "short": "Keep your systems in sync.",
+    "short": "Keep business information moving between systems.",
     "copy": "Design and implement bounded API integrations between Salesforce and the applications your teams depend on, including MuleSoft where it fits the environment.",
     "deliverables": [
       "API contracts, field mappings and authentication design",
@@ -77,7 +77,7 @@ export const offerings = [
   {
     "id": "data",
     "title": "Data architecture & migration",
-    "short": "Data your teams can trust.",
+    "short": "Build a reliable foundation for reporting and AI.",
     "copy": "Plan Salesforce data models, ownership rules and migration work. For Data 360, start with source readiness, identity-resolution requirements and an architecture assessment before choosing an implementation scope.",
     "deliverables": [
       "Object relationships, field ownership and data dictionary",
@@ -102,7 +102,7 @@ export const offerings = [
 {
   "id": "agentforce",
   "title": "Agentforce readiness & solution design",
-  "short": "Plan a controlled AI pilot.",
+  "short": "Decide what an agent should do before building it.",
   "copy": "Assess a candidate Salesforce AI use case, its data and action boundaries, and the path to a controlled pilot. Compare native Agentforce with a custom Claude integration where the business needs a choice.",
   "deliverables": [
     "Use-case fit and architecture options",
@@ -126,7 +126,7 @@ export const offerings = [
   {
     "id": "ai",
     "title": "Claude AI & governed workflows",
-    "short": "AI with a defined purpose.",
+    "short": "Move from a promising experiment to a testable workflow.",
     "copy": "Apply Claude to a specific CRM or development task with approved context, clear permissions, human review and examples that define acceptable output.",
     "deliverables": [
       "Workflow design, tool permissions and review points",
@@ -150,7 +150,7 @@ export const offerings = [
   {
     "id": "location",
     "title": "ArcGIS & location intelligence",
-    "short": "Put location to work.",
+    "short": "Bring geography into the decisions made in your CRM.",
     "copy": "Connect Salesforce records with ArcGIS maps and supported location operations, from address geocoding to feature queries and routing context.",
     "deliverables": [
       "Map experience and CRM record context",
@@ -174,7 +174,7 @@ export const offerings = [
   {
     "id": "delivery",
     "title": "Salesforce engineering & releases",
-    "short": "Build, test and release.",
+    "short": "Deliver changes your team can test and maintain.",
     "copy": "Build Apex, Lightning components and automation within an agreed architecture. Improve the route from development through testing and release.",
     "deliverables": [
       "Scoped Apex, LWC or automation implementation",
@@ -200,7 +200,7 @@ export const offerings = [
   {
     "id": "development",
     "title": "Portals, websites & connected apps",
-    "short": "Connect the customer journey.",
+    "short": "Create a useful experience around your business systems.",
     "copy": "Build customer-facing websites, business portals and connected applications, including Salesforce Experience Cloud where appropriate.",
     "deliverables": [
       "User journeys and responsive interface design",
