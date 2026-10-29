@@ -1,0 +1,53 @@
+/* Motion supports the reading order. The established colours and type stay intact. */
+:root{--ease-out:cubic-bezier(.22,1,.36,1);--feedback-ease:var(--ease-out)}
+.service-stream{padding:21px 0 23px}
+.stream-heading{margin-bottom:14px}
+.stream-set{gap:72px;padding-right:72px;min-width:100vw;justify-content:space-around}
+.stream-set a{font-size:14px;gap:17px;min-height:54px}
+.stream-track{animation-duration:58s;animation-play-state:paused;will-change:auto}
+.service-stream.is-in-view .stream-track{animation-play-state:running;will-change:transform}
+.service-stream.is-paused .stream-track,.service-stream:focus-within .stream-track{animation-play-state:paused}
+.stream-set a:focus-visible{outline:2px solid var(--blue);outline-offset:5px;border-radius:3px}
+.stream-set .service-logo-frame{width:80px;height:50px}
+.stream-set .logo-salesforce{width:72px;height:48px}
+.stream-set .studio-service-mark{font-size:21px}
+.expertise-copy,.expertise-output{animation:expertise-settle 220ms var(--ease-out)}
+.system-visual .crm-node,.system-visual .ai-node,.system-visual .location-node{transition:opacity 240ms ease,transform 260ms var(--ease-out)}
+.mode-crm .crm-signal,.mode-ai .ai-signal,.mode-location .location-signal{animation-duration:720ms;animation-timing-function:linear}
+.work-preview{transition:transform 240ms var(--ease-out)}
+.work-preview>.mini-visual,.work-preview>.code-visual{transition:transform 500ms var(--ease-out);transform-origin:center}
+.work-preview{overflow:clip}
+.footer-links-grid nav a,.footer-professional>a{transition:color 160ms ease;text-underline-offset:5px}
+.footer-links-grid nav a:focus-visible,.footer-professional>a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+@keyframes expertise-settle{from{opacity:.5;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(hover:hover) and (pointer:fine){
+ .service-stream:hover .stream-track{animation-play-state:paused}
+ .stream-set a:hover{color:var(--blue)}
+ .work-preview:hover>.mini-visual,.work-preview:hover>.code-visual{transform:scale(1.018)}
+ .footer-links-grid nav a:hover,.footer-professional>a:hover{color:var(--blue);text-decoration:underline}
+}
+@media(max-width:700px){
+ .stream-set{gap:40px;padding-right:40px;min-width:0}
+ .stream-set a{font-size:13px;gap:13px}
+ .stream-track{animation-duration:52s}
+ .stream-set .service-logo-frame{width:72px}
+ .service-stream{padding-block:19px}
+}
+@media(min-width:701px) and (max-width:1000px){
+ .about-hero{grid-template-columns:1.1fr .9fr;gap:34px}
+ .about-hero h1{font-size:clamp(38px,4.8vw,46px);line-height:1.12}
+ .about-hero .identity-art{height:430px}
+}
+html[data-input=keyboard] .service-stream .stream-track{animation:none;transform:none;will-change:auto}
+html[data-input=keyboard] .stream-viewport{overflow-x:auto;mask-image:none}
+html[data-input=keyboard] .stream-set[aria-hidden=true]{display:none}
+html[data-input=keyboard] .stream-set{padding-inline:24px}
+html[data-input=keyboard] .expertise-copy,html[data-input=keyboard] .expertise-output{animation:none}
+@media(prefers-reduced-motion:reduce){
+ .service-stream .stream-track{animation:none!important;transform:none!important;will-change:auto!important}
+ .stream-viewport{overflow-x:auto;mask-image:none}
+ .stream-set[aria-hidden=true]{display:none}
+ .stream-set{padding-inline:24px;justify-content:start;min-width:0}
+ .stream-heading button{display:none}
+ .work-preview,.work-preview>.mini-visual,.work-preview>.code-visual{transform:none!important;transition:none!important}
+}
