@@ -38,7 +38,7 @@ export function MotionLayer(){
     observer.unobserve(element);
    });
   },{threshold:.08,rootMargin:'0px 0px -36px 0px'});
-  const targets=document.querySelectorAll('.section-heading>*,.work-preview,.founder-panel,.founder-section>div:last-child,.approach-band h2,.approach-list>div,.about-story>div,.values-grid>article,.credential-groups>article,.service-detail-title,.engagement-grid>article,.footer-contact-band>div');
+  const targets=document.querySelectorAll('.section-heading>*,.work-preview,.founder-panel,.founder-section>div:last-child,.approach-band h2,.approach-list>div,.about-story>div,.expertise-ledger>div,.values-grid>article,.credential-groups>article,.service-detail-title,.engagement-grid>article,.footer-contact-band>div');
   targets.forEach(element=>{element.setAttribute('data-motion-part','');observer.observe(element)});
   const keyboard=(event:KeyboardEvent)=>{if(event.key==='Tab'||event.key.startsWith('Arrow'))stop()};
   const focus=()=>stop();
