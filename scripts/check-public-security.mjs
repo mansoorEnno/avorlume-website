@@ -14,7 +14,7 @@ for(const path of paths){
  assert(html.includes('<link rel="canonical" href="'+canonicalFor(path)+'">'));
  assert(html.includes('sha256-'+createHash('sha256').update(json).digest('base64')),'CSP hash mismatch: '+path);
  assert(html.indexOf('Content-Security-Policy')<html.indexOf('<script'),'Policy must precede scripts');
- for(const directive of ['object-src &#39;none&#39;','base-uri &#39;none&#39;','frame-src &#39;none&#39;','form-action &#39;self&#39; https://formsubmit.co'])assert(html.includes(directive));
+ for(const directive of ['object-src &#39;none&#39;','base-uri &#39;none&#39;','frame-src &#39;none&#39;','form-action &#39;self&#39; https://formspree.io','connect-src &#39;self&#39; https://formspree.io'])assert(html.includes(directive));
  assert(!html.includes("script-src &#39;self&#39; &#39;unsafe-inline&#39;"));
  for(const match of html.matchAll(/<script\b([^>]*)>(.*?)<\/script>/gs)){
   const[,attributes,content]=match;
@@ -32,3 +32,8 @@ const config=JSON.parse(await fs.readFile('scripts/indexnow-config.json','utf8')
 assert.equal((await fs.readFile('dist/'+config.key+'.txt','utf8')).trim(),config.key);
 assert.equal(Object.keys(JSON.parse(await fs.readFile('dist/indexnow-manifest.json','utf8'))).length,paths.length);
 console.log('Passed security policy, script hashes, identity schema, canonical, sitemap, verification and noindex checks for 9 public pages.');
+
+const home=await fs.readFile('dist/index.html','utf8');
+assert(home.includes('action="https://formspree.io/f/xyeepqrg"'),'Missing configured enquiry endpoint');
+assert(!home.includes('formsubmit.co'),'Retired submission provider still present');
+assert(home.includes('name="service"')&&home.includes('name="email"')&&home.includes('name="consent"'),'Missing enquiry fields');

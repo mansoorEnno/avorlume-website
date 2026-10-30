@@ -26,7 +26,7 @@ export function structuredData(path,meta,offerings){
 }
 
 export function securityMeta(json=''){
- const policy=`default-src 'self'; script-src 'self'${json?' '+hash(json):''}; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-src 'none'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests`;
+ const policy=`default-src 'self'; script-src 'self'${json?' '+hash(json):''}; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://formspree.io; object-src 'none'; base-uri 'none'; frame-src 'none'; form-action 'self' https://formspree.io; upgrade-insecure-requests`;
  return `<meta http-equiv="Content-Security-Policy" content="${escape(policy)}"><meta name="referrer" content="strict-origin-when-cross-origin">`;
 }
 
