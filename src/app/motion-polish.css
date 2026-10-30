@@ -68,3 +68,13 @@ html[data-input=keyboard] .expertise-copy,html[data-input=keyboard] .expertise-o
  .stream-heading button{display:none}
  .work-preview,.work-preview>.mini-visual,.work-preview>.code-visual{transform:none!important;transition:none!important}
 }
+
+/* Motion follows a deliberate action and keeps controls readable throughout. */
+@keyframes enquiry-open{from{opacity:.94;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes enquiry-step-in{from{opacity:.88;transform:translateY(5px)}to{opacity:1;transform:none}}
+.enquiry-dialog[open]{animation:enquiry-open 220ms cubic-bezier(.22,1,.36,1)}
+.enquiry-step-panel:not([hidden]){animation:enquiry-step-in 180ms cubic-bezier(.22,1,.36,1)}
+.enquiry-dialog-bar button svg{transition:transform 160ms ease}
+@media(hover:hover) and (pointer:fine){.enquiry-dialog-bar button:hover svg{transform:rotate(90deg)}}
+html[data-input=keyboard] :is(.enquiry-dialog,.enquiry-step-panel){animation:none!important}
+@media(prefers-reduced-motion:reduce){.enquiry-dialog,.enquiry-step-panel,.enquiry-dialog-bar button svg{animation:none!important;transition:none!important;transform:none!important}}
