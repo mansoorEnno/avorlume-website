@@ -23,3 +23,17 @@ html{scroll-behavior:auto}
 
 .enquiry-dialog{width:min(1120px,calc(100% - 48px));max-width:none;max-height:min(90dvh,1000px);padding:0;border:1px solid #cbd8ef;border-radius:16px;background:#eaf0fb;color:#243b60;box-shadow:0 24px 90px rgba(16,33,66,.24);overflow:auto;overscroll-behavior:contain}.enquiry-dialog::backdrop{background:rgba(16,28,49,.58)}.enquiry-dialog-bar{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 28px;background:#fff;border-bottom:1px solid #dbe4f2}.enquiry-dialog-bar span{font-size:11px;color:#62789a}.enquiry-dialog-bar h2{font-size:23px;letter-spacing:-.025em;margin-top:3px}.enquiry-dialog-bar button{display:flex;align-items:center;gap:10px;min-height:44px;padding:8px 12px;border:1px solid #d5e0f1;border-radius:7px;background:white;font-size:13px;color:#354e74}.enquiry-dialog-bar button span{font-size:23px;line-height:1}.enquiry-dialog-bar button:hover{background:#f1f5fd}.enquiry-dialog-bar button:focus-visible{outline:2px solid #3555d8;outline-offset:3px}.enquiry-dialog .contact-section{padding:0}.enquiry-dialog .contact-inner{width:auto;padding:34px 28px 42px}.enquiry-dialog .contact-copy h2{font-size:clamp(30px,3vw,42px)}.enquiry-dialog .brief-card{scroll-margin-top:100px}@media(max-width:700px){.enquiry-dialog{width:100%;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0}.enquiry-dialog-bar{padding:14px 20px}.enquiry-dialog .contact-inner{padding:26px 20px 40px}.enquiry-dialog .contact-copy h2{font-size:32px}.enquiry-dialog .contact-copy{margin-bottom:4px}}
 @media(max-width:700px){.enquiry-dialog .contact-copy{display:none}.enquiry-dialog .contact-inner{padding-top:20px}}
+/* A spacious, focused enquiry workspace with compact service choices. */
+.enquiry-dialog{width:100%;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0;scrollbar-width:thin;scrollbar-color:#a9b9d2 transparent}
+.enquiry-dialog::-webkit-scrollbar{width:8px}.enquiry-dialog::-webkit-scrollbar-thumb{background:#a9b9d2;border:2px solid #eaf0fb;border-radius:8px}
+.enquiry-dialog .contact-inner{max-width:1280px;margin-inline:auto;padding:24px 32px 36px;gap:clamp(36px,6vw,90px)}
+.enquiry-dialog .brief-card{padding:26px 30px}
+.enquiry-dialog .enquiry-services{gap:8px;margin:15px 0 18px}
+.enquiry-dialog .enquiry-services .service-option{min-height:48px;padding:8px 12px}
+.enquiry-dialog .form-progress{margin-bottom:22px}
+.enquiry-dialog .brief-subtitle{margin-top:9px}
+.enquiry-dialog .button-full{min-height:48px}
+@media(max-width:700px){.enquiry-dialog .contact-inner{padding:20px 20px 36px}.enquiry-dialog .brief-card{padding:24px}.enquiry-dialog .enquiry-service-select{margin:18px 0 20px}}
+@media(min-width:701px){.enquiry-dialog .contact-inner{padding-bottom:10px}}
+
+html.enquiry-is-open{overflow:hidden}
