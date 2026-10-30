@@ -27,6 +27,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm check:public
+      - name: Prepare search update notifications
+        continue-on-error: true
+        run: node scripts/indexnow.mjs prepare
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -34,3 +37,6 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify IndexNow of content changes
+        continue-on-error: true
+        run: node scripts/indexnow.mjs publish

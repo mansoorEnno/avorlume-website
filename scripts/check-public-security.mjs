@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {canonicalFor} from './site-policy.mjs';
 
-const paths=['/','/about','/services','/projects','/work','/privacy','/contact'];
+const paths=['/','/about','/services','/projects','/work','/privacy','/contact','/insights','/insights/claude-salesforce-integration'];
 for(const path of paths){
  const html=await fs.readFile('dist'+(path==='/'?'':path)+'/index.html','utf8');
  const json=html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)?.[1];
@@ -28,4 +28,7 @@ const sitemap=await fs.readFile('dist/sitemap.xml','utf8');
 for(const path of paths)assert(sitemap.includes('<loc>'+canonicalFor(path)+'</loc>'));
 assert((await fs.readFile('dist/robots.txt','utf8')).includes('Sitemap: https://avorlume.com/sitemap.xml'));
 assert((await fs.readFile('dist/.well-known/security.txt','utf8')).includes('Canonical: https://avorlume.com/.well-known/security.txt'));
-console.log('Passed security policy, script hashes, identity schema, canonical, sitemap, verification and noindex checks for 7 public pages.');
+const config=JSON.parse(await fs.readFile('scripts/indexnow-config.json','utf8'));
+assert.equal((await fs.readFile('dist/'+config.key+'.txt','utf8')).trim(),config.key);
+assert.equal(Object.keys(JSON.parse(await fs.readFile('dist/indexnow-manifest.json','utf8'))).length,paths.length);
+console.log('Passed security policy, script hashes, identity schema, canonical, sitemap, verification and noindex checks for 9 public pages.');

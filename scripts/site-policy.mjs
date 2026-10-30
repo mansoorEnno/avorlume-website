@@ -14,7 +14,14 @@ export function structuredData(path,meta,offerings){
   {'@type':path==='/about'?'ProfilePage':path==='/contact'?'ContactPage':['/services','/projects','/work'].includes(path)?'CollectionPage':'WebPage','@id':url+'#webpage',url,name:meta.title,description:meta.description,isPartOf:{'@id':website},publisher:{'@id':org},inLanguage:'en',...(path==='/about'?{mainEntity:{'@id':person}}:{about:{'@id':org}})}
  ];
  if(path==='/services')graph.push({'@type':'OfferCatalog','@id':url+'#catalog',name:'Avorlume services',itemListElement:offerings.map(o=>({'@type':'Offer',itemOffered:{'@type':'Service',name:o.title,description:o.copy,url:url+'#'+o.id,provider:{'@id':org}}}))});
- if(path!=='/')graph.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:origin+'/'},{'@type':'ListItem',position:2,name:({'/about':'About Mansoor','/services':'Services','/projects':'Project ideas','/work':'Work and samples','/privacy':'Privacy notice','/contact':'Contact'})[path],item:url}]});
+ if(path==='/insights/claude-salesforce-integration')graph.push({'@type':'TechArticle','@id':url+'#article',headline:'Before connecting Claude to Salesforce.',description:meta.description,author:{'@id':person},publisher:{'@id':org},mainEntityOfPage:{'@id':url+'#webpage'},datePublished:'2026-10-30',inLanguage:'en',citation:['https://developer.salesforce.com/docs/platform/named-credentials/guide/get-started.html','https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview']});
+ if(path!=='/'){
+  const names={'/about':'About Mansoor','/services':'Services','/projects':'Project ideas','/work':'Work and samples','/privacy':'Privacy notice','/contact':'Contact','/insights':'Technical guides','/insights/claude-salesforce-integration':'Claude and Salesforce integration'};
+  const crumbs=[{'@type':'ListItem',position:1,name:'Home',item:origin+'/'}];
+  if(path.startsWith('/insights/'))crumbs.push({'@type':'ListItem',position:2,name:'Technical guides',item:origin+'/insights/'});
+  crumbs.push({'@type':'ListItem',position:crumbs.length+1,name:names[path],item:url});
+  graph.push({'@type':'BreadcrumbList',itemListElement:crumbs});
+ }
  return JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c');
 }
 

@@ -5,6 +5,7 @@ import './app/micro-details.css';
 import './app/interaction-refinements.css';
 import './app/enquiry-footer.css';
 import './app/motion-polish.css';
+import './app/guides.css';
 document.addEventListener('keydown',e=>{if(e.key==='Tab'||e.key.startsWith('Arrow'))document.documentElement.dataset.input='keyboard'});
 document.addEventListener('pointerdown',()=>{document.documentElement.dataset.input='pointer'});
 const path=window.location.pathname.replace(/\/$/,'').replace(/\.html$/,'')||'/';
