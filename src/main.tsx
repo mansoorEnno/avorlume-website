@@ -10,3 +10,5 @@ document.addEventListener('keydown',e=>{if(e.key==='Tab'||e.key.startsWith('Arro
 document.addEventListener('pointerdown',()=>{document.documentElement.dataset.input='pointer'});
 const path=window.location.pathname.replace(/\/$/,'').replace(/\.html$/,'')||'/';
 hydrateRoot(document.getElementById('root')!,<Page path={path}/>);
+
+import './app/project-stories.css';
