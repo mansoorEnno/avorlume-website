@@ -37,3 +37,5 @@ const home=await fs.readFile('dist/index.html','utf8');
 assert(home.includes('action="https://formspree.io/f/xyeepqrg"'),'Missing configured enquiry endpoint');
 assert(!home.includes('formsubmit.co'),'Retired submission provider still present');
 assert(home.includes('name="service"')&&home.includes('name="email"')&&home.includes('name="consent"'),'Missing enquiry fields');
+
+for(const path of paths){const html=await fs.readFile('dist'+(path==='/'?'':path)+'/index.html','utf8');assert(!html.includes('mansoorijaz246@gmail.com'),'Private notification address exposed: '+path);}
