@@ -5,11 +5,12 @@ import {timelines} from '../lib/enquiry';
 import {enquiryDelivery} from '../lib/enquiry-delivery';
 const services=[...offerings.map(o=>o.service),'Help me decide'];
 type Values={name:string;email:string;business:string;timeline:string;message:string};
-export function Contact(){
- const[selected,setSelected]=useState('Help me decide');const[step,setStep]=useState(1);const[pending,setPending]=useState(false);const[errors,setErrors]=useState<Record<string,string>>({});const[review,setReview]=useState<Values|null>(null);const[count,setCount]=useState(0);
+export function Contact({initialService}:{initialService?:string}={}){
+ const[selected,setSelected]=useState(initialService&&services.includes(initialService)?initialService:'Help me decide');const[step,setStep]=useState(1);const[pending,setPending]=useState(false);const[errors,setErrors]=useState<Record<string,string>>({});const[review,setReview]=useState<Values|null>(null);const[count,setCount]=useState(0);
  const [sent,setSent]=useState(false);const [deliveryError,setDeliveryError]=useState('');const sending=useRef(false);const receipt=useRef<HTMLDivElement>(null);
  const form=useRef<HTMLFormElement>(null);const title=useRef<HTMLHeadingElement>(null);const interacted=useRef(false);
  useEffect(()=>{const value=new URLSearchParams(location.search).get('service');if(value&&services.includes(value))setSelected(value);const restore=()=>setPending(false);window.addEventListener('pageshow',restore);return()=>window.removeEventListener('pageshow',restore)},[]);
+ useEffect(()=>{if(initialService&&services.includes(initialService)&&!interacted.current)setSelected(initialService)},[initialService]);
  useEffect(()=>{if(interacted.current)title.current?.focus()},[step]);
  function go(value:number){interacted.current=true;setDeliveryError('');setStep(value)}
  function validate(){const f=form.current!;const d=new FormData(f);const v=Object.fromEntries(['name','email','business','timeline','message'].map(k=>[k,String(d.get(k)||'').trim()])) as Values;const next:Record<string,string>={};if(v.name.length<2)next.name='Enter your name using at least 2 characters.';if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email))next.email='Enter a valid email, such as name@company.com.';if(v.message.length<20)next.message='Add at least 20 characters about your project.';if(!d.get('consent'))next.consent='Confirm that Avorlume may contact you about this project.';setErrors(next);if(Object.keys(next).length){go(2);requestAnimationFrame(()=>{(f.elements.namedItem(Object.keys(next)[0]) as HTMLElement)?.focus()});return null;}for(const key of ['name','email','message'] as const)(f.elements.namedItem(key) as HTMLInputElement).value=v[key];return v;}
